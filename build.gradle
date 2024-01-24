@@ -5,6 +5,13 @@ buildscript {
         maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
         maven { url 'https://jitpack.io' }
         maven { url 'https://developer.huawei.com/repo/' }
+        maven {
+            credentials {
+                username 'iQIlEd'
+                password 'AcXsRn0W7g'
+            }
+            url 'https://packages.aliyun.com/maven/repository/2055964-release-h8WSGt/'
+        }
 //        maven { url "https://mvn.cloud.alipay.com/nexus/content/repositories/open/" }
     }
     dependencies {
@@ -21,6 +28,13 @@ allprojects {
         maven { url 'https://jitpack.io' }
         maven { url 'https://developer.huawei.com/repo/' }
 //        maven { url "https://mvn.cloud.alipay.com/nexus/content/repositories/open/" }
+        maven {
+            credentials {
+                username 'iQIlEd'
+                password 'AcXsRn0W7g'
+            }
+            url 'https://packages.aliyun.com/maven/repository/2055964-release-h8WSGt/'
+        }
     }
 }
 
