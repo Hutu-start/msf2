@@ -2,9 +2,10 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        maven {
-            url "https://mvn.cloud.alipay.com/nexus/content/repositories/open/"
-        }
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://jitpack.io' }
+        maven { url 'https://developer.huawei.com/repo/' }
+//        maven { url "https://mvn.cloud.alipay.com/nexus/content/repositories/open/" }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.1.2'
@@ -15,11 +16,11 @@ buildscript {
 allprojects {
     repositories {
         google()
-        maven { url "https://jitpack.io" }
         mavenCentral()
-        maven {
-            url "https://mvn.cloud.alipay.com/nexus/content/repositories/open/"
-        }
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://jitpack.io' }
+        maven { url 'https://developer.huawei.com/repo/' }
+//        maven { url "https://mvn.cloud.alipay.com/nexus/content/repositories/open/" }
     }
 }
 
