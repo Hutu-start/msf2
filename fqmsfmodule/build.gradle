@@ -1,0 +1,53 @@
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+}
+group = "com.github.Hutu-start"
+version = "1.1.7"
+android {
+    compileSdkVersion 33
+    buildToolsVersion "30.0.3"
+    useLibrary 'org.apache.http.legacy'
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 31
+
+        consumerProguardFiles "consumer-rules.pro"
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+}
+
+dependencies {
+    compileOnly fileTree(dir: './libs', include: ['MsfPerformanceSdk_V*.aar'])
+    implementation('com.alibaba:fastjson:1.2.83')
+    api "com.mpaas.android:face-verify:3.5.4"
+    implementation('com.amap.api:location:6.4.2')
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.Hutu-start'
+                artifactId = 'msf'
+                version = '1.1.7'
+            }
+        }
+    }
+}
