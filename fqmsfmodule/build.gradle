@@ -1,9 +1,12 @@
-plugins {
-    id 'com.android.library'
-    id 'maven-publish'
-}
-group = "com.github.Hutu-start"
-version = "1.0.5"
+//plugins {
+//    id 'com.android.library'
+//    id 'com.kezong.fat-aar'
+//}
+apply plugin: 'com.android.library'
+apply plugin: 'com.kezong.fat-aar'
+//    id 'maven-publish'
+//group = "com.github.Hutu-start"
+//version = "1.0.5"
 android {
     compileSdkVersion 33
     buildToolsVersion "30.0.3"
@@ -15,7 +18,7 @@ android {
 
         consumerProguardFiles "consumer-rules.pro"
         ndk {
-            abiFilters 'armeabi-v7a', 'arm64-v8a'
+            abiFilters 'arm64-v8a'
         }
     }
     buildTypes {
@@ -28,13 +31,21 @@ android {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
+    packagingOptions {
+        exclude 'lib/x86/*.so'
+        exclude 'lib/x86_64/*.so'
+        exclude 'lib/armeabi/*.so'
+    }
 
 }
-//repositories {
-//    flatDir {
-//        dirs 'libs'
-//    }
-//}
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+fataar {
+    transitive = true
+}
 dependencies {
 //    implementation 'androidx.appcompat:appcompat:1.0.0'
 //    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -42,19 +53,33 @@ dependencies {
 //    api(name: 'MsfPerformanceSdk_V1.0.2', ext: 'aar')
 //    api(name: 'face-verify-sdk-3.5.0.230823195944', ext: 'aar')
     compileOnly fileTree(dir: './libs', include: ['MsfPerformanceSdk_V*.aar'])
+    embed (name:'MsfPerformanceSdk_V0.9', ext:'aar')
 //    implementation 'com.alibaba:fastjson:1.2.83'
 //    implementation 'com.amap.api:location:6.4.2'
-    api 'com.mpaas.android:face-verify:3.5.4'
-//    api 'com.github.Hutu-start:msf2:1.0.3'
-}
-
-afterEvaluate {
-    publishing {
-        publications {
-            // Creates a Maven publication called "release".
-            release(MavenPublication) {
-                from components.release
-            }
-        }
+//    implementation 'com.mpaas.android:face-verify:3.5.4'
+//    implementation 'com.mpaas.ocr:ocr-build:1.0.0.220623115635-saas'
+//    implementation 'com.github.Hutu-start:msf2:1.0.5'
+    embed('com.mpaas.android:face-verify:3.5.4') {
+        exclude(group: 'com.alibaba', module: 'fastjson')
+        exclude(group: 'androidx.localbroadcastmanager', module: 'localbroadcastmanager')
+        exclude(group: 'androidx.appcompat', module: 'appcompat')
+        exclude(group: 'com.squareup', module: 'otto')
+        exclude(group: 'com.mpaas.android.anotations', module: 'anotations-build')
+        transitive = true
     }
 }
+
+//afterEvaluate {
+//    android.libraryVariants.all { variant ->
+//        File outputFile = variant.outputs.first().outputFile
+//        tasks.named("assemble${variant.name.capitalize()}").configure {
+//            doLast {
+//                copy {
+//                    from outputFile
+//                    into "../app/libs"
+//                    rename outputFile.name, "fat-aar-final.aar"
+//                }
+//            }
+//        }
+//    }
+//}

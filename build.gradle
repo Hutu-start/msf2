@@ -5,18 +5,19 @@ buildscript {
         maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
         maven { url 'https://jitpack.io' }
         maven { url 'https://developer.huawei.com/repo/' }
-        maven {
-            credentials {
-                username 'iQIlEd'
-                password 'AcXsRn0W7g'
-            }
-            url 'https://packages.aliyun.com/maven/repository/2055964-release-h8WSGt/'
-        }
-//        maven { url "https://mvn.cloud.alipay.com/nexus/content/repositories/open/" }
+//        maven {
+//            credentials {
+//                username 'iQIlEd'
+//                password 'AcXsRn0W7g'
+//            }
+//            url 'https://packages.aliyun.com/maven/repository/2055964-release-h8WSGt/'
+//        }
+        maven { url "https://mvn.cloud.alipay.com/nexus/content/repositories/open/" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.1.2'
+        classpath 'com.android.tools.build:gradle:7.0.2'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+        classpath 'com.github.kezong:fat-aar:1.3.8'
     }
 }
 
@@ -27,14 +28,14 @@ allprojects {
         maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
         maven { url 'https://jitpack.io' }
         maven { url 'https://developer.huawei.com/repo/' }
-//        maven { url "https://mvn.cloud.alipay.com/nexus/content/repositories/open/" }
-        maven {
-            credentials {
-                username 'iQIlEd'
-                password 'AcXsRn0W7g'
-            }
-            url 'https://packages.aliyun.com/maven/repository/2055964-release-h8WSGt/'
-        }
+        maven { url "https://mvn.cloud.alipay.com/nexus/content/repositories/open/" }
+//        maven {
+//            credentials {
+//                username 'iQIlEd'
+//                password 'AcXsRn0W7g'
+//            }
+//            url 'https://packages.aliyun.com/maven/repository/2055964-release-h8WSGt/'
+//        }
     }
 }
 
