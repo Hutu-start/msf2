@@ -3,7 +3,7 @@ plugins {
     id 'maven-publish'
 }
 group = "com.github.Hutu-start"
-version = "1.0.2"
+version = "1.0.3"
 android {
     compileSdkVersion 33
     buildToolsVersion "30.0.3"
@@ -43,10 +43,9 @@ dependencies {
 //    api(name: 'face-verify-sdk-3.5.0.230823195944', ext: 'aar')
     compileOnly fileTree(dir: './libs', include: ['MsfPerformanceSdk_V*.aar'])
 //    implementation 'com.alibaba:fastjson:1.2.83'
-//    api "com.mpaas.android:face-verify:3.5.4"
 //    implementation 'com.amap.api:location:6.4.2'
     api 'com.mpaas.android:face-verify:3.5.4'
-//    implementation 'com.github.Hutu-start:msf2:1.0.1'
+//    implementation 'com.github.Hutu-start:msf2:1.0.2'
 }
 
 afterEvaluate {
