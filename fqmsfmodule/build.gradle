@@ -1,12 +1,12 @@
-//plugins {
-//    id 'com.android.library'
-//    id 'com.kezong.fat-aar'
-//}
-apply plugin: 'com.android.library'
-apply plugin: 'com.kezong.fat-aar'
-//    id 'maven-publish'
-//group = "com.github.Hutu-start"
-//version = "1.0.5"
+plugins {
+    id 'com.android.library'
+    id 'com.kezong.fat-aar'
+    id 'maven-publish'
+}
+//apply plugin: 'com.android.library'
+//apply plugin: 'com.kezong.fat-aar'
+group = "com.github.Hutu-start"
+version = "1.1.0"
 android {
     compileSdkVersion 33
     buildToolsVersion "30.0.3"
@@ -35,6 +35,8 @@ android {
         exclude 'lib/x86/*.so'
         exclude 'lib/x86_64/*.so'
         exclude 'lib/armeabi/*.so'
+        exclude 'lib/armeabi-v7a/*.so'
+        exclude 'jni/armeabi-v7a/*.so'
     }
 
 }
@@ -52,34 +54,60 @@ dependencies {
 
 //    api(name: 'MsfPerformanceSdk_V1.0.2', ext: 'aar')
 //    api(name: 'face-verify-sdk-3.5.0.230823195944', ext: 'aar')
-    compileOnly fileTree(dir: './libs', include: ['MsfPerformanceSdk_V*.aar'])
-    embed (name:'MsfPerformanceSdk_V0.9', ext:'aar')
+//    compileOnly fileTree(dir: './libs', include: ['MsfPerformanceSdk_V*.aar'])
+//    embed(name: 'MsfPerformanceSdk_V0.9', ext: 'aar')
 //    implementation 'com.alibaba:fastjson:1.2.83'
 //    implementation 'com.amap.api:location:6.4.2'
 //    implementation 'com.mpaas.android:face-verify:3.5.4'
 //    implementation 'com.mpaas.ocr:ocr-build:1.0.0.220623115635-saas'
 //    implementation 'com.github.Hutu-start:msf2:1.0.5'
-    embed('com.mpaas.android:face-verify:3.5.4') {
-        exclude(group: 'com.alibaba', module: 'fastjson')
-        exclude(group: 'androidx.localbroadcastmanager', module: 'localbroadcastmanager')
-        exclude(group: 'androidx.appcompat', module: 'appcompat')
-        exclude(group: 'com.squareup', module: 'otto')
-        exclude(group: 'com.mpaas.android.anotations', module: 'anotations-build')
-        transitive = true
-    }
+    embed 'com.alipay.android.phone.mobilecommon:multimedia-build:10.1.60a.1699'
+    embed 'com.alipay.android.phone.mobilecommon:multimediabiz-build:10.1.60a.1699'
+    embed 'com.alipay.android.phone.mobilecommon:xnn-build:10.1.60a.2502'
+    embed 'com.alipay.android.phone.mobilesdk:common-build:10.1.60a.1699'
+    embed 'com.alipay.android.phone.mobilesdk:logging-build:10.2.3.122.25-saas'
+    embed 'com.alipay.android.phone.mobilesdk:monitor-build:10.1.60a.00002633'
+    embed 'com.alipay.android.phone.mobilesdk:netsdkextdependapi-build:10.1.60a.00002657'
+    embed 'com.alipay.android.phone.mobilesdk:rpc-build:10.1.60a.00003134'
+    embed 'com.alipay.android.phone.mobilesdk:transport-build:10.2.3.226'
+    embed 'com.alipay.android.phone.thirdparty:utdid-build:10.1.60a.00002599'
+    embed 'com.alipay.android.phone.wallet:basicstl-build:10.1.60a.1699'
+    embed 'com.alipay.multimedia.base:basic-build:10.1.60a.1821'
+    embed 'com.alipay.multimedia:xmedia-build:10.1.60a.2024'
+    embed 'com.mpaas.android.adapter:utdid-adapter:10.1.60a.00002714'
+    embed 'com.mpaas.android.verify:deepsec:1.0.0'
+    embed 'com.mpaas.android.verify:face-verify-sdk:3.5.0.230823195944'
+    embed 'com.mpaas.android.verify:ocr-sdk:3.5.0.230823195944'
+    embed 'com.mpaas.android.verify:openplatform-sdk:3.5.0.230824152352'
+    embed 'com.mpaas.android:face-verify:3.5.4'
+    embed 'com.mpaas.commonlib:libcshared-build:10.1.60a.00002915'
+    embed 'com.mpaas.ocr.model:bankcard-build:10.1.60a.1699'
+    embed 'com.mpaas.ocr.model:bankframe-build:10.1.60a.1699'
+    embed 'com.mpaas.ocr.model:idcard-build:10.1.60a.2303'
+    embed 'com.mpaas.ocr.model:idcardframe-build:10.1.60a.1699'
+    embed 'com.mpaas.ocr:ocr-build:1.0.0.220623115635-saas'
+    embed 'com.mpaas.ocr:ocradapter-build:10.1.60a.1826'
+    embed 'com.mpaas.ocr:ocrbase-build:10.1.60a.1699'
+    embed 'com.mpaas.thirdparty:wire-build:10.1.60a.00002599'
+    embed 'com.squareup:otto:1.3.8'
+
+//    embed('com.mpaas.android:face-verify:3.5.4') {
+//        exclude(group: 'com.alibaba', module: 'fastjson')
+//        exclude(group: 'androidx.localbroadcastmanager', module: 'localbroadcastmanager')
+//        exclude(group: 'androidx.appcompat', module: 'appcompat')
+//        exclude(group: 'com.squareup', module: 'otto')
+//        exclude(group: 'com.mpaas.android.anotations', module: 'anotations-build')
+//        transitive = true
+//    }
 }
 
-//afterEvaluate {
-//    android.libraryVariants.all { variant ->
-//        File outputFile = variant.outputs.first().outputFile
-//        tasks.named("assemble${variant.name.capitalize()}").configure {
-//            doLast {
-//                copy {
-//                    from outputFile
-//                    into "../app/libs"
-//                    rename outputFile.name, "fat-aar-final.aar"
-//                }
-//            }
-//        }
-//    }
-//}
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.release
+            }
+        }
+    }
+}
